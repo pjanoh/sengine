@@ -1,0 +1,138 @@
+
+Антон Баранов
+ Sep 7th at 5:10 PM
+Класс StringBuilder и его методы. Задача 4 из 4 Скрин
+Задача не проходит проверку.
+код:
+public class Palindrome {
+    public boolean isPalindromeLine(String str) {
+        str = str.toLowerCase();
+        StringBuilder sb = new StringBuilder(str);
+        for (int i = 0; i < sb.length(); i++) {
+            if (sb.substring(i).equals(" ")) {
+                sb = sb.deleteCharAt(i);
+            }
+        }
+        StringBuilder sb2 = new StringBuilder(sb);
+        sb2 = sb2.reverse();
+        if (sb2.toString().equals(sb.toString())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+(edited)
+13 replies
+
+
+Чиркин Иван
+  6 days ago
+if (sb.substring(i).equals(" "))
+вот это условие будет редко выполняться, такая запись сделает подстроку начиная с i и до конца строки
+:catshake:
+1
+
+
+
+Антон Баранов
+  6 days ago
+В подсказке:
+Удалить пробелы можно циклом по всем элементам StringBuilder. Устанавливаем индекс в значение 0, далее идём циклом, ищем пробел. Если нашли — удаляем его.
+Т е берём элемент, сравниваем со знаком пробела, если совпадает, то удаляем
+
+
+Чиркин Иван
+  6 days ago
+в целом логика удаления верная, только подстроку из одного символа нужно по-другому создавать sb.substring(i, i + 1)
+
+
+Михаил Сапунов
+  6 days ago
+можно циклом вайл пройтись. и в условии каждым индексом проверять - "не пробел ли это"
+
+
+Антон Баранов
+  6 days ago
+Понял разницу. sb.substring(i) - это вся строка начиная от индекса, а нам нужно ограничить один символ
+:+1:
+1
+
+
+
+Антон Баранов
+  6 days ago
+но тренажер всё-ровно не пропускает решение 
+@Филипп Воронов
+
+public class Palindrome {
+    public boolean isPalindromeLine(String str) {
+        str = str.toLowerCase();
+        StringBuilder sb = new StringBuilder(str);
+        for (int i = 0; i < sb.length(); i++) {
+            if (sb.substring(i, i + 1).equals(" ")) {
+                sb = sb.deleteCharAt(i);
+            }
+        }
+        StringBuilder sb2 = new StringBuilder(sb);
+        sb2 = sb2.reverse();
+        if (sb2.toString().equals(sb.toString())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+(edited)
+
+
+Михаил Сапунов
+  6 days ago
+пробелы удаляет. булевое значения возвращает верное  ...
+
+
+Антон Баранов
+  6 days ago
+Тогда что не нравится тренажеру?
+
+
+Михаил Сапунов
+  6 days ago
+напиши в поддержку
+:thank_you:
+1
+
+
+
+Михаил Сапунов
+  6 days ago
+@Антон Баранов
+ писал им? Что не так было?
+
+
+Антон Баранов
+  6 days ago
+Пока нет ответа))
+
+
+Антон Баранов
+  5 days ago
+Возможно Филипп поможет 
+@Филипп Воронов
+
+
+Филипп Воронов
+:studying:  5 days ago
+привет!
+а ты тестировал? :slightly_smiling_face:
+программу в таких ситуациях следует хорошо тестировать чтобы найти потенциальные дефекты
+вот пример, на котором уже твой цикл не работает: https://replit.com/@pjanoh/InsidiousTautUtility#Main.java
+(пройдись отладчиком чтобы понять почему)
+
+
+
+
+
+
+
+

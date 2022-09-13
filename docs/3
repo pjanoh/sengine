@@ -1,0 +1,172 @@
+Михаил
+:headphones: Yesterday at 3:55 PM
+Вопрос по финалке -
+мне прилетело за не
+По тз, нужно создать свой метод String toString(Task task) или переопределить базовый так, чтобы данные в файле записывались следующим образом:
+id,type,name,status,description,epic 1,TASK,Task1,NEW,Description task1, 2,EPIC,Epic2,DONE,Description epic2, 3,SUBTASK,Sub Task2,DONE,Description sub task3,2
+Я создал метод таким
+private String taskToString(TaskManager  taskmanager) { 
+       List<Task> taskDump = new ArrayList<>(); 
+
+        StringBuilder sb = new StringBuilder(); 
+
+        taskDump.addAll(taskArray.values()); 
+
+        taskDump.addAll(epicHash.values()); 
+
+        taskDump.addAll(subEpicHash.values()); 
+
+        for (Task task1 : taskDump) { 
+
+            sb.append(task1.toString()).append(",").append(System.lineSeparator()); 
+
+        } 
+
+        return sb.toString();
+
+    } 
+    private String readFileContentsOrNull(String path) { 
+
+
+        try { 
+
+
+            return Files.readString(Path.of(path)); 
+
+
+        } 
+    } 
+Можно ли так и оставить? Я знаю, так делали уже им зачли?
+19 replies
+
+
+Филипп Воронов
+:studying:  23 hours ago
+вопрос следует оформить с полным контекстом.
+со ссылкой на условие, с кодом на гитхабе, со ссылкой на конкретное место в коде в котором было замечание, ссылкой на код с исправлением, скриншотом замечания и так далее
+
+
+Михаил
+:headphones:  23 hours ago
+щас
+у меня внезапно давление скакнуо, соображаю туго, извините (edited) 
+
+
+Михаил
+:headphones:  23 hours ago
+ссыль на строку и код
+как я из тз понял, это лишь рекомендация
+2 files
+ 
+image.png
+
+
+image.png
+
+
+FileBackedTasksManager.java
+<https://github.com/Abrielz1/java-kanban|Abrielz1/java-kanban>Abrielz1/java-kanban | Added by GitHub
+
+
+Филипп Воронов
+:studying:  23 hours ago
+на код нужно кидать ссылки на конкретные куски кода, а не просто на репозиторий
+
+
+Михаил
+:headphones:  23 hours ago
+так 1 ая ссылка на код именно в том место
+
+
+Михаил
+:headphones:  23 hours ago
+https://github.com/Abrielz1/java-kanban/blob/f173a91ccf48a5a8a132b20d873ebcdd36f66706/src/manager/history/file/FileBackedTasksManager.java#L196
+FileBackedTasksManager.java
+            sb.append(task1.toString()).append(",").append(System.lineSeparator());
+<https://github.com/Abrielz1/java-kanban|Abrielz1/java-kanban>Abrielz1/java-kanban | Added by GitHub
+
+
+Филипп Воронов
+:studying:  23 hours ago
+а теперь ссылка на исправление
+
+
+Михаил
+:headphones:  23 hours ago
+так я хотел уточнить, можно ли оставить так, так всё раьотает, ревьюер ссылается на тз, но как я понял это рекомендация
+
+
+Михаил
+:headphones:  23 hours ago
+я хотел бы так и оставить, так как многим засчитывали работу через стрин билдер
+
+
+Филипп Воронов
+:studying:  23 hours ago
+а где ссылка на ТЗ? напоминаю о необходимости соблюдать все правила оформления вопросов
+
+
+Михаил
+:headphones:  23 hours ago
+my bad
+https://practicum.yandex.ru/learn/java-developer/courses/03fd0a9d-1b30-4e29-9076-fe5f5[…]-e04773fc6f75/lessons/b652f845-24a5-46cd-8dbb-c2d3c68b4c1a/
+
+
+Михаил
+:headphones:  23 hours ago
+вот это было в спойлере
+Как сохранять задачи в файл и считывать их из него
+Создайте enum с типами задач.
+Напишите метод сохранения задачи в строку String toString(Task task) или переопределите базовый.
+Напишите метод создания задачи из строки Task fromString(String value).
+Напишите статические методы static String historyToString(HistoryManager manager) и static List<Integer> historyFromString(String value) для сохранения и восстановления менеджера истории из CSV.
+(edited)
+
+
+Филипп Воронов
+:studying:  23 hours ago
+все замечания, отмеченные как “Надо исправить” обязательны для исправления.
+является ли CSV-формат из текста ТЗ обязательным и можно ли замечание сделать как пожелание, а не требование, также лучше уточнить у ревьюера. с т.з. твоего ревьюера вполне может быть, что твой формат сохранения крайне неудобен и из-за этого качество решения пока не дотягивает до зачёта.
+image.png
+ 
+image.png
+
+
+
+
+Михаил
+:headphones:  23 hours ago
+я уже задал вопрос верификатору, но хотел уточнить у вас, так как я понял, последнее слова за наставником
+
+
+Филипп Воронов
+:studying:  23 hours ago
+неа, в вопросе ревью последнее слово за ревьюером. тк именно он(а) проводит ревью твоей работы, а не я
+
+
+Михаил
+:headphones:  23 hours ago
+ясно
+
+
+Михаил
+:headphones:  23 hours ago
+но в вопросе защиты от дурака, вхыграла ваша точка зрения, ревьер мне сказала, что, как решит наставник
+
+
+Филипп Воронов
+:studying:  23 hours ago
+это странно) разберёмся))
+я-то разрешаю, если смог написать алгоритм чтения из такого файла.
+:cat-high-five:
+1
+
+
+
+Михаил
+:headphones:  23 hours ago
+Всё работало, все претензии в основном типа енум пишется Большими буквами
+:+1::skin-tone-2:
+1
+
+

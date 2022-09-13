@@ -1,0 +1,173 @@
+Титов Алексей
+ Yesterday at 2:12 PM
+Здравствуйте! 5. Создаём своё исключение, Задача в практикуме https://practicum.yandex.ru/trainer/java-developer/lesson/dbeaf82f-a7f5-4378-aab2-e77da0319fb3/task/f2c7a1a9-ffbc-4e6f-be9e-2570a3bd82ad/
+public static double getDoubleLimited(String greeting, int attempts) {
+    for (int counter = 0; counter < attempts; counter++) {
+        try {
+            System.out.println(greeting + " => ");
+            // добавьте недостающий код
+            try {
+                final double value = scanner.nextDouble();
+                if (value<0){
+                    throw new InputException("Введено отрицательное значение");
+                }
+                return value;
+            } catch (InputMismatchException exception) {
+                throw new InputException("Введено не число");
+            }
+        } catch (InputException exception) {
+            System.out.println(exception.getDetailMessage());
+        }
+    }
+    throw new LimitException("Превышен лимит ошибок ввода:", attempts);
+}
+Как только ввожу символы, InputMismatchException  "залипает" и все 3 цикла выводит мне "Введено не число" не останавливаясь. Второй день мучаюсь, если перенести
+final Scanner scanner = new Scanner(System.in);
+в getDoubleLimited залипание пропадает, но тренажер сходит с ума. Help, please! (edited) 
+11 replies
+
+
+Филипп Воронов
+:studying:  1 day ago
+привет! не вижу, например, скриншота условия.
+напомню, что оформлять вопросы нужно по всем правилам
+
+
+Филипп Воронов
+:studying:  1 day ago
+не вижу также ссылки на код
+скриншота запуска тоже не вижу
+
+
+Филипп Воронов
+:studying:  1 day ago
+и код должен быть отформатирован
+
+
+Титов Алексей
+  1 day ago
+image.png
+ 
+image.png
+
+
+
+
+Титов Алексей
+  1 day ago
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class FinancialCalculatorException {
+    final static Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+        try {
+            calculate();
+        } catch (LimitException exception) {
+            System.out.println(exception.getDetailMessage());
+        }        // перехват исключения LimitException
+    }
+
+    public static double getInterest(final double rate, final int time, final double principal) {
+        final double multiplier = Math.pow(1.0 + rate/100.0, time) - 1.0;
+        return multiplier * principal;
+    }
+
+    public static int getIntLimited(String greeting, int attempts) {
+        for (int counter = 0; counter < attempts; counter++) {
+            try {
+                System.out.println(greeting + " => ");
+                try {
+                    final int value = scanner.nextInt();
+                    if (value<0){
+                        throw new InputException("Введено отрицательное значение");
+                    }
+                    return value;
+                } catch (InputMismatchException exception) {
+                    throw new InputException("Введено не число");
+                }
+            } catch (InputException exception) {
+                System.out.println(exception.getDetailMessage());
+            }
+        }
+        throw new LimitException("Превышен лимит ошибок ввода:", attempts);
+    }
+
+    public static double getDoubleLimited(String greeting, int attempts) {
+        for (int counter = 0; counter < attempts; counter++) {
+            try {
+                System.out.println(greeting + " => ");
+                // добавьте недостающий код
+                try {
+                    final double value = scanner.nextDouble();
+                    if (value<0){
+                        throw new InputException("Введено отрицательное значение");
+                    }
+                    return value;
+                } catch (InputMismatchException exception) {
+                    throw new InputException("Введено не число");
+                }
+            } catch (InputException exception) {
+                System.out.println(exception.getDetailMessage());
+            }
+        }
+        throw new LimitException("Превышен лимит ошибок ввода:", attempts);
+    }
+
+    public static void calculate() {
+        final double rate = getDoubleLimited("Введите ставку", 3);
+        final double principal = getDoubleLimited("Введите размер вклада", 3);
+        final int time = getIntLimited("Введите срок вклада в месяцах", 5);
+        System.out.println("Ваша выгода = " + getInterest(rate, time, principal));
+    }
+}
+
+
+Филипп Воронов
+:studying:  1 day ago
+там этот класс не единственный
+код мы сдаём через гитхаб
+
+
+Титов Алексей
+  1 day ago
+https://github.com/alexwti/Exception.git
+
+
+Филипп Воронов
+:studying:  1 day ago
+а ты тестировал локально, не в тренажёре?
+например, тут
+https://github.com/alexwti/Exception/blob/main/src/FinancialCalculatorException.java#L10
+у тебя выводится разве сообщение в том формате что требуется в условии?
+у тебя это вызывает это:
+https://github.com/alexwti/Exception/blob/main/src/LimitException.java#L11
+а сообщение задаётся здесь:
+https://github.com/alexwti/Exception/blob/main/src/FinancialCalculatorException.java#L36
+и между : и числом явно отсутствует пробел, который требуется в образце:
+ Превышен лимит ошибок ввода: n
+давай обильно протестируем программу локально на предмет подобных несоответствий строгим требованиям ТЗ
+
+
+Титов Алексей
+  24 hours ago
+К сожалению, добавление пробела ничего не меняет. Как только я ввожу символьное значение,
+            } catch (InputMismatchException exception) {
+                throw new InputException("Введено не число");
+отрабатывется в цикле до превышения attempts. Повторный ввод значения делать не дает
+image.png
+ 
+image.png
+
+
+
+
+Филипп Воронов
+:studying:  24 hours ago
+а с этой проблемой нужно анализировать отладчиком.
+локально пробовал? такая же проблема? значит нужен отладчик
+
+
+Титов Алексей
+  24 hours ago
+Да, теперь увидел то, что раньше в упор не видел. Отрабатываются как InputMismatchException так и InputException. Спасибо, буду думать)))

@@ -1,0 +1,87 @@
+
+Михаил
+:headphones: Sep 8th at 5:38 PM
+не получается задача из статьи
+image.png
+ 
+image.png
+
+
+12 replies
+
+
+Михаил
+:headphones:  5 days ago
+Без названия
+ 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+Click to expand inline (47 lines)
+
+
+
+
+Филипп Воронов
+:studying:  5 days ago
+А что такое “не получается“? Не вижу описание ошибки. Напоминаю, что все вопросы должны быть оформлены по всем правилам
+
+
+Михаил
+:headphones:  5 days ago
+счётчики не работают, они равны 1, каждый
+
+
+Михаил
+:headphones:  5 days ago
+image.png
+ 
+image.png
+
+
+
+
+Филипп Воронов
+:studying:  5 days ago
+а твой анализ отладчиком?)
+
+
+Михаил
+:headphones:  5 days ago
+так это ж не в идее
+
+
+Михаил
+:headphones:  5 days ago
+как я в неё файл положу (edited) 
+
+
+Михаил
+:headphones:  5 days ago
+я понимаю, что не работает логика счёта
+
+
+Филипп Воронов
+:studying:  5 days ago
+так программировать-то нужно в идее, если не получается с наскока.
+как ты ещё иначе проанализируешь свой код?
+
+
+Михаил
+:headphones:  5 days ago
+осталось только в идею файл положить
+
+
+Филипп Воронов
+:studying:  5 days ago
+просто кинь его в папку проекта)
+:cat-high-five:
+1
+
+
+
+Михаил
+:headphones:  5 days ago
+щас попробую тут алгоритм по советовали, не получится сдлеаю анализ в идея
