@@ -3,10 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class InvertedSearchEngine implements SearchEngine {
     protected Map<String, List<DocEntry>> index = new HashMap<>();
@@ -35,7 +32,9 @@ public class InvertedSearchEngine implements SearchEngine {
             }
         }
 
-        // сделать сортировку списков в мапе
+        for (List<DocEntry> wordEntries : index.values()) {
+            Collections.sort(wordEntries);
+        }
     }
 
 

@@ -1,4 +1,4 @@
-public class DocEntry {
+public class DocEntry implements Comparable<DocEntry> {
     protected int docId;
     protected int count;
 
@@ -21,5 +21,10 @@ public class DocEntry {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    @Override
+    public int compareTo(DocEntry o) {
+        return -Integer.compare(count, o.count);
     }
 }
