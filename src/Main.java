@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         SearchEngine engine = new InvertedSearchEngine(new File("docs"));
 
-        List<Snippet> serp = engine.search("задание");
+        List<Snippet> serp = engine.search("Задание");
         for (Snippet snippet : serp) {
             System.out.println(snippet);
         }

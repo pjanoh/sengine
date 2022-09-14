@@ -19,7 +19,8 @@ public class InvertedSearchEngine implements SearchEngine {
 
             Map<String, Integer> freqs = new HashMap<>(); // word -> количество
             for (String word : words) {
-                freqs.put(word, freqs.getOrDefault(word, 0) + 1);
+                String wordNorm = normalize(word);
+                freqs.put(wordNorm, freqs.getOrDefault(wordNorm, 0) + 1);
             }
 
             for (Map.Entry<String, Integer> wordAndFreq : freqs.entrySet()) {
@@ -40,16 +41,21 @@ public class InvertedSearchEngine implements SearchEngine {
 
     @Override
     public List<Snippet> search(String query) {
-        List<DocEntry> entries = index.get(query);
+        String queryNorm = normalize(query);
+        List<DocEntry> entries = index.get(queryNorm);
         List<Snippet> serp = new ArrayList<>();
         for (DocEntry entry : entries) {
             int docId = entry.getDocId();
             File file = new File(folder.getPath() + "/" + docId);
             String content = readFileContentsOrNull(file.getPath());
-            Snippet snippet = new Snippet(docId, content, query, 25);
+            Snippet snippet = new Snippet(docId, content);
             serp.add(snippet);
         }
         return serp;
+    }
+
+    public String normalize(String word) {
+        return word.toLowerCase();
     }
 
     private String readFileContentsOrNull(String path) {
