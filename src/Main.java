@@ -4,7 +4,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        SearchEngine engine = new SearchEngine(new File("docs"));
+        SearchEngine engine = new InvertedSearchEngine(new File("docs"));
 
         List<Snippet> serp = engine.search("задание");
         for (Snippet snippet : serp) {

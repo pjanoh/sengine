@@ -7,6 +7,16 @@ public class Snippet {
         this.text = text;
     }
 
+    public Snippet(int docId, String fullContent, String keyWord, int margin) {
+        int startIndex = fullContent.indexOf(keyWord);
+        String textSnippet = fullContent.substring(
+                Math.max(startIndex - margin, 0),
+                Math.min(startIndex + keyWord.length() + margin, fullContent.length())
+        );
+        this.docId = docId;
+        this.text = textSnippet;
+    }
+
     public int getDocId() {
         return docId;
     }
