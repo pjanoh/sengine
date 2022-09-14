@@ -54,8 +54,14 @@ public class InvertedSearchEngine implements SearchEngine {
         return serp;
     }
 
-    public String normalize(String word) {
-        return word.toLowerCase();
+    public String normalize(String word) { // задание -> саданее; зодание -> саданее
+        return word.toLowerCase()
+                .replace('и', 'e')
+                .replace('о', 'а')
+                .replace('б', 'п')
+                .replace('з', 'с')
+                // ...
+                ;
     }
 
     private String readFileContentsOrNull(String path) {
